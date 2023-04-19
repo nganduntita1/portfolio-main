@@ -1,3 +1,3 @@
 # portfolio
 
-https://nganduntita1.github.io/portfolio/
+https://nganduntita1.github.io/portfolio-main/
