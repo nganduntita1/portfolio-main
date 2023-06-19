@@ -465,12 +465,40 @@ h6 {
   #preview-shadow {
     max-width: 280px;
     height: 180px;
-    padding-left: 10px;
-    padding-top: 10px;
+    padding-left: 1px;
+    padding-top: 1px;
   }
 
   #preview {
     width: 280px;
+    /* margin-right: 30px; */
+
+    left: -20px;
+  }
+
+  .more {
+    font-size: 39px;
+    background: var(--previewBg);
+  }
+
+  .s1 {
+    height: 139vh;
+  }
+
+  .right-column {
+    height: 29vh;
+  }
+
+  .about-me {
+    text-align: center;
+  }
+  .contact-me {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  footer {
+    display: none;
   }
 }
 
