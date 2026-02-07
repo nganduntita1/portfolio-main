@@ -462,6 +462,13 @@ h6 {
 }
 
 @media screen and (max-width: 490px) {
+  .s1,
+  .s2 {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+
   #preview-shadow {
     max-width: 280px;
     height: 180px;
@@ -482,11 +489,11 @@ h6 {
   }
 
   .s1 {
-    height: 139vh;
+    height: auto;
   }
 
   .right-column {
-    height: 29vh;
+    height: auto;
   }
 
   .about-me {
