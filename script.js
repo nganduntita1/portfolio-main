@@ -43,6 +43,8 @@ const projectModalTitle = document.getElementById("projectModalTitle");
 const projectModalDesc = document.getElementById("projectModalDesc");
 const projectModalGallery = document.getElementById("projectModalGallery");
 const projectModalLink = document.getElementById("projectModalLink");
+const imageLightbox = document.getElementById("imageLightbox");
+const imageLightboxImg = document.getElementById("imageLightboxImg");
 
 function openProjectModal(card) {
   if (!projectModal || !card) return;
@@ -63,6 +65,9 @@ function openProjectModal(card) {
     img.loading = "lazy";
     img.decoding = "async";
     img.alt = `${title} preview`;
+    img.addEventListener("click", () => {
+      openImageLightbox(src, `${title} preview`);
+    });
     projectModalGallery.appendChild(img);
   });
 
@@ -93,6 +98,35 @@ document.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeProjectModal();
+  }
+});
+
+function openImageLightbox(src, altText) {
+  if (!imageLightbox || !imageLightboxImg) return;
+  imageLightboxImg.src = src;
+  imageLightboxImg.alt = altText || "Project preview";
+  imageLightbox.classList.add("is-open");
+  imageLightbox.setAttribute("aria-hidden", "false");
+}
+
+function closeImageLightbox() {
+  if (!imageLightbox || !imageLightboxImg) return;
+  imageLightbox.classList.remove("is-open");
+  imageLightbox.setAttribute("aria-hidden", "true");
+  imageLightboxImg.src = "";
+}
+
+document.addEventListener("click", (event) => {
+  if (!imageLightbox || !imageLightbox.classList.contains("is-open")) return;
+  const target = event.target;
+  if (target && target.getAttribute("data-close") === "true") {
+    closeImageLightbox();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeImageLightbox();
   }
 });
 
