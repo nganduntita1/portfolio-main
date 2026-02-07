@@ -89,6 +89,7 @@ document.querySelectorAll(".project-card").forEach((card) => {
 
 document.addEventListener("click", (event) => {
   if (!projectModal || !projectModal.classList.contains("is-open")) return;
+  if (imageLightbox && imageLightbox.classList.contains("is-open")) return;
   const target = event.target;
   if (target && target.getAttribute("data-close") === "true") {
     closeProjectModal();
@@ -97,6 +98,10 @@ document.addEventListener("click", (event) => {
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
+    if (imageLightbox && imageLightbox.classList.contains("is-open")) {
+      closeImageLightbox();
+      return;
+    }
     closeProjectModal();
   }
 });
@@ -120,12 +125,7 @@ document.addEventListener("click", (event) => {
   if (!imageLightbox || !imageLightbox.classList.contains("is-open")) return;
   const target = event.target;
   if (target && target.getAttribute("data-close") === "true") {
-    closeImageLightbox();
-  }
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
+    event.stopPropagation();
     closeImageLightbox();
   }
 });
