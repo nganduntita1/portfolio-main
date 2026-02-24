@@ -688,6 +688,12 @@ h6 {
 }
 
 @media screen and (max-width: 700px) {
+  #frmContact {
+    width: calc(100% - 24px);
+    margin: 0 12px 50px;
+    box-sizing: border-box;
+  }
+
   .project-modal {
     padding: 10px;
   }
@@ -731,6 +737,11 @@ h6 {
 
 .image-lightbox.is-open {
   display: grid;
+}
+
+.project-modal.is-open ~ .sticky-contact,
+.image-lightbox.is-open ~ .sticky-contact {
+  display: none !important;
 }
 
 .image-lightbox__backdrop {
