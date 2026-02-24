@@ -635,6 +635,8 @@ h6 {
   display: none;
   place-items: center;
   z-index: 9999;
+  padding: 12px;
+  box-sizing: border-box;
 }
 
 .project-modal.is-open {
@@ -656,6 +658,7 @@ h6 {
   border-radius: var(--cardRadius);
   padding: 28px;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
 }
 
 .project-modal__close {
@@ -685,6 +688,22 @@ h6 {
 }
 
 @media screen and (max-width: 700px) {
+  .project-modal {
+    padding: 10px;
+  }
+
+  .project-modal__content {
+    width: 100%;
+    max-height: 92vh;
+    padding: 20px 16px;
+  }
+
+  .project-modal__close {
+    top: 10px;
+    right: 12px;
+    line-height: 1;
+  }
+
   .project-modal__gallery {
     grid-template-columns: 1fr;
   }
@@ -835,17 +854,18 @@ h6 {
   }
 
   #preview-shadow {
-    max-width: 280px;
-    height: 180px;
-    padding-left: 1px;
-    padding-top: 1px;
+    width: min(280px, 90vw);
+    max-width: 100%;
+    height: auto;
+    padding: 12px;
+    box-sizing: border-box;
   }
 
   #preview {
-    width: 280px;
-    /* margin-right: 30px; */
-
-    left: -20px;
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    box-sizing: border-box;
   }
 
   .more {
