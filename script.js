@@ -132,12 +132,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Story cards move right-to-left and fade in/out through the viewport
     const storyPanels = document.querySelectorAll('.story-content .panel');
+    const isNarrowScreen = window.matchMedia('(max-width: 768px)').matches;
     storyPanels.forEach((panel, index) => {
         const card = panel.querySelector('.panel-content');
         if (!card) return;
 
-        const startX = 180 + (index % 2) * 40;
-        const endX = -180 - (index % 2) * 40;
+        const startX = isNarrowScreen ? 0 : 180 + (index % 2) * 40;
+        const endX = isNarrowScreen ? 0 : -180 - (index % 2) * 40;
 
         const cardTimeline = gsap.timeline({
             scrollTrigger: {
@@ -195,16 +196,167 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Projects: layered section parallax + interactive card depth
+    const projectsSection = document.querySelector('.projects');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    if (projectsSection && projectCards.length) {
+        const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+        const supportsFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        let targetSectionX = 0;
+        let targetSectionY = 0;
+        let currentSectionX = 0;
+        let currentSectionY = 0;
+
+        if (supportsFinePointer) {
+            window.addEventListener('mousemove', (event) => {
+                const nx = (event.clientX / window.innerWidth) * 2 - 1;
+                const ny = (event.clientY / window.innerHeight) * 2 - 1;
+                targetSectionX = nx * 22;
+                targetSectionY = ny * 16;
+            });
+        }
+
+        gsap.ticker.add(() => {
+            currentSectionX += (targetSectionX - currentSectionX) * 0.06;
+            currentSectionY += (targetSectionY - currentSectionY) * 0.06;
+            projectsSection.style.setProperty('--projects-parallax-x', `${currentSectionX.toFixed(2)}px`);
+            projectsSection.style.setProperty('--projects-parallax-y', `${currentSectionY.toFixed(2)}px`);
+        });
+
+        ScrollTrigger.create({
+            trigger: projectsSection,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+            onUpdate: (self) => {
+                const shift = (self.progress - 0.5) * 130;
+                projectsSection.style.setProperty('--projects-scroll-shift', `${shift.toFixed(2)}px`);
+            }
+        });
+
+        projectCards.forEach((card, index) => {
+            const image = card.querySelector('.project-image img');
+
+            gsap.fromTo(card,
+                {
+                    y: 90,
+                    opacity: 0,
+                    rotateX: 6,
+                    rotateY: index % 2 === 0 ? -5 : 5
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    rotateX: 0,
+                    rotateY: 0,
+                    duration: 1.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 86%'
+                    }
+                }
+            );
+
+            if (supportsFinePointer) {
+                card.addEventListener('mousemove', (event) => {
+                    const rect = card.getBoundingClientRect();
+                    const px = (event.clientX - rect.left) / rect.width;
+                    const py = (event.clientY - rect.top) / rect.height;
+
+                    const rotateY = clamp((px - 0.5) * 16, -8, 8);
+                    const rotateX = clamp((0.5 - py) * 12, -6, 6);
+                    const moveX = (px - 0.5) * 18;
+                    const moveY = (py - 0.5) * 14;
+
+                    gsap.to(card, {
+                        rotateX,
+                        rotateY,
+                        y: -10,
+                        duration: 0.35,
+                        ease: 'power2.out'
+                    });
+
+                    if (image) {
+                        image.style.setProperty('--img-parallax-x', `${(-moveX).toFixed(2)}px`);
+                        image.style.setProperty('--img-parallax-y', `${(-moveY).toFixed(2)}px`);
+                    }
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    gsap.to(card, {
+                        rotateX: 0,
+                        rotateY: 0,
+                        y: 0,
+                        duration: 0.5,
+                        ease: 'power3.out'
+                    });
+
+                    if (image) {
+                        image.style.setProperty('--img-parallax-x', '0px');
+                        image.style.setProperty('--img-parallax-y', '0px');
+                    }
+                });
+            }
+        });
+    }
+
     /* =========================================================================
        MODAL LOGIC
        ========================================================================= */
     const projectModal = document.getElementById("projectModal");
     const projectModalTitle = document.getElementById("projectModalTitle");
+        const projectModalTag = document.getElementById("projectModalTag");
     const projectModalDesc = document.getElementById("projectModalDesc");
+        const projectModalHeroImg = document.getElementById("projectModalHeroImg");
     const projectModalGallery = document.getElementById("projectModalGallery");
+        const projectModalCounter = document.getElementById("projectModalCounter");
+        const projectModalPrev = document.getElementById("projectModalPrev");
+        const projectModalNext = document.getElementById("projectModalNext");
+        const projectModalZoom = document.getElementById("projectModalZoom");
     const projectModalLink = document.getElementById("projectModalLink");
     const imageLightbox = document.getElementById("imageLightbox");
     const imageLightboxImg = document.getElementById("imageLightboxImg");
+
+        let modalImages = [];
+        let modalImageIndex = 0;
+
+        function updateModalImage(index, animate = false) {
+            if (!projectModalHeroImg || !modalImages.length) return;
+
+            modalImageIndex = (index + modalImages.length) % modalImages.length;
+            const activeSrc = modalImages[modalImageIndex];
+            const projectName = projectModalTitle ? projectModalTitle.textContent : "Project";
+
+            if (animate) {
+                gsap.fromTo(projectModalHeroImg,
+                    { opacity: 0.35, scale: 1.02 },
+                    { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" }
+                );
+            }
+
+            projectModalHeroImg.src = activeSrc;
+            projectModalHeroImg.alt = `${projectName} preview ${modalImageIndex + 1}`;
+
+            if (projectModalCounter) {
+                projectModalCounter.textContent = `${modalImageIndex + 1} / ${modalImages.length}`;
+            }
+
+            if (projectModalPrev) {
+                projectModalPrev.disabled = modalImages.length <= 1;
+            }
+
+            if (projectModalNext) {
+                projectModalNext.disabled = modalImages.length <= 1;
+            }
+
+            if (projectModalGallery) {
+                projectModalGallery.querySelectorAll('img').forEach((thumb, thumbIndex) => {
+                    thumb.classList.toggle('is-active', thumbIndex === modalImageIndex);
+                });
+            }
+        }
     
     function openProjectModal(card) {
       if (!projectModal || !card) return;
@@ -217,21 +369,32 @@ document.addEventListener("DOMContentLoaded", () => {
       projectModalTitle.textContent = title;
       projectModalDesc.textContent = description;
       projectModalLink.href = link;
+            if (projectModalTag) {
+                const category = card.querySelector('.project-info p')?.textContent?.trim() || 'Project Case Study';
+                projectModalTag.textContent = category;
+            }
     
       projectModalGallery.innerHTML = "";
-      images.forEach((src) => {
+            modalImages = images.length ? images : ["./images/cd.png"];
+            modalImages.forEach((src, thumbIndex) => {
         const img = document.createElement("img");
         img.src = src;
         img.loading = "lazy";
         img.alt = `${title} preview`;
-        img.addEventListener("click", () => {
-          openImageLightbox(src, `${title} preview`);
+                img.addEventListener("click", () => {
+                    updateModalImage(thumbIndex, true);
         });
         projectModalGallery.appendChild(img);
       });
+
+            updateModalImage(0);
     
       projectModal.classList.add("is-open");
       projectModal.setAttribute("aria-hidden", "false");
+            gsap.fromTo(projectModal.querySelector('.project-modal__content'),
+                { y: 32, opacity: 0.5, scale: 0.985 },
+                { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "power3.out" }
+            );
       lenis.stop(); // Pause smooth scrolling while modal is open
     }
     
@@ -262,8 +425,44 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
         closeProjectModal();
+                return;
+            }
+
+            if (projectModal && projectModal.classList.contains("is-open")) {
+                if (event.key === "ArrowRight") {
+                    updateModalImage(modalImageIndex + 1, true);
+                }
+                if (event.key === "ArrowLeft") {
+                    updateModalImage(modalImageIndex - 1, true);
+                }
       }
     });
+
+        if (projectModalPrev) {
+            projectModalPrev.addEventListener("click", () => updateModalImage(modalImageIndex - 1, true));
+        }
+
+        if (projectModalNext) {
+            projectModalNext.addEventListener("click", () => updateModalImage(modalImageIndex + 1, true));
+        }
+
+        if (projectModalHeroImg) {
+            projectModalHeroImg.addEventListener("click", () => {
+                if (!modalImages.length) return;
+                const activeSrc = modalImages[modalImageIndex];
+                const title = projectModalTitle ? projectModalTitle.textContent : "Project preview";
+                openImageLightbox(activeSrc, `${title} preview ${modalImageIndex + 1}`);
+            });
+        }
+
+        if (projectModalZoom) {
+            projectModalZoom.addEventListener("click", () => {
+                if (!modalImages.length) return;
+                const activeSrc = modalImages[modalImageIndex];
+                const title = projectModalTitle ? projectModalTitle.textContent : "Project preview";
+                openImageLightbox(activeSrc, `${title} preview ${modalImageIndex + 1}`);
+            });
+        }
 
     // Lightbox for gallery images
     function openImageLightbox(src, altText) {
