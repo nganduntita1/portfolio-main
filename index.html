@@ -1,408 +1,400 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<title>Ntita</title>
-	<meta name="description" content="Full Stack Engineer specializing in React, Laravel, AI integration, and WordPress. Based in Johannesburg, open to remote opportunities.">
-	<meta property="og:title" content="Ngandu Kapinga Ntita — Full Stack Engineer">
-	<meta property="og:description" content="Full Stack Engineer specializing in React, Laravel, AI integration, and WordPress. Based in Johannesburg, open to remote opportunities.">
-	<meta property="og:image" content="./images/profile.png">
-	<meta property="og:url" content="https://ntita.is-a.dev/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngandu Kapinga Ntita | Full Stack & AI Engineer</title>
+    <meta name="description"
+        content="Full Stack Engineer specializing in React, Laravel, AI integration, and WordPress. Based in Johannesburg, open to remote opportunities.">
 
-	<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1"/>
-
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Russo+One&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="default.css">
-
-	<link rel="shortcut icon" type="image/png" href="./images/vicon.png"/>
-
-    <link id="theme-style" rel="stylesheet" type="text/css" href="">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
-	<style>
-/* Social buttons styling only */
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 15px;
-}
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-.social-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    text-decoration: none;
-    color: white;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-.social-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
+    <!-- Styles -->
+    <link rel="stylesheet" href="default.css">
+</head>
 
-.instagram {
-    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-}
+<body class="loading">
 
-.linkedin {
-    background: #0077b5;
-}
+    <!-- Custom Cursor -->
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
 
-.github {
-    background: #333;
-}
-</style>
-	<!-- <style>
-		
-	</style> -->
-</head>	
-<body class="theme-default">
-	<div class="loader"></div>
-<div class="content">
-  <!-- your page content goes here -->
-  <section class="s1">
-	<div class="main-container">
-		<div class="greeting-wrapper">
-			<h1 class="paragraph">Hi, I'm Ntita</h1>
-		</div>
-		
-		<div class="intro-wrapper">
-			<div class="nav-wrapper">
-				<div class="dots-wrapper">
-					<div id="dot-1" class="browser-dot"></div>
-					<div id="dot-2" class="browser-dot"></div>
-					<div id="dot-3" class="browser-dot"></div>
-				</div>
-				<ul id="navigation">
-					<li><a href="#frmContact">Contact</a></li>
-				</ul>
-			</div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span class="logo-text">Ntita.</span>
+        </div>
+        <div class="nav-links">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#projects" class="nav-link">Work</a>
+            <a href="#contact" class="nav-btn">Let's Talk</a>
+        </div>
+    </nav>
 
-			<div class="left-column">
-				<img id="profile_pic" src="images/Profile.png" width="200" height="200" fetchpriority="high" decoding="async" alt="Ntita profile photo">
-				<h5 style="text-align: center;line-height: 0;">Personalize Theme</h5>
+    <!-- Main Content for Smooth Scrolling -->
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
 
-				<div id="theme-options-wrapper">
-					<div data-mode="light" id="light-mode" class="theme-dot"></div>
-					<div data-mode="blue" id="blue-mode" class="theme-dot"></div>
-					<div data-mode="green" id="green-mode" class="theme-dot"></div>
-					<div data-mode="purple" id="purple-mode" class="theme-dot"></div>
-				</div>
+            <!-- Hero Section -->
+            <section class="hero" id="home">
+                <div class="hero-model-stage" aria-hidden="true">
+                    <div class="space-particles space-particles--hero" id="particles-hero"></div>
+                    <model-viewer id="hero-model-viewer" class="hero-model" src="./abstract_ball/scene.gltf"
+                        alt="Abstract 3D sphere" auto-rotate rotation-per-second="12deg" camera-orbit="35deg 75deg 105%"
+                        min-camera-orbit="auto auto 75%" max-camera-orbit="auto auto 140%" exposure="1.15"
+                        shadow-intensity="0" interaction-prompt="none" touch-action="pan-y" loading="eager"
+                        reveal="auto">
+                    </model-viewer>
+                    <div class="hero-model-glow"></div>
+                </div>
+                <div class="hero-container">
+                    <p class="hero-subtitle gs-reveal">Based in Johannesburg</p>
+                    <h1 class="hero-title">
+                        <span class="hero-line gs-reveal">Creative</span>
+                        <span class="hero-line gs-reveal">Full Stack</span>
+                        <span class="hero-line hero-gradient gs-reveal">Engineer.</span>
+                    </h1>
+                    <p class="hero-desc gs-reveal">
+                        Specializing in React, Laravel, AI integration, and scalable web architectures. Turning complex
+                        problems into elegant 3D and digital experiences.
+                    </p>
+                    <div class="hero-cta gs-reveal">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="UPGRADED_Ntita_1.docx" download class="btn btn-outline">Download CV</a>
+                    </div>
+                </div>
+                <div class="scroll-indicator gs-reveal">
+                    <span>Scroll</span>
+                    <div class="mouse"></div>
+                </div>
+            </section>
 
-				<p id="settings-note">*Theme settings will be saved for<br>your next visit</p>
-				
-				<!-- Social Media Links -->
-				<div class="social-links">
-					<a href="https://www.instagram.com/ntita11/" target="_blank" class="social-btn instagram" title="Instagram">
-						<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-							<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-						</svg>
-					</a>
-					<a href="https://www.linkedin.com/in/kapinga-ntita/" target="_blank" class="social-btn linkedin" title="LinkedIn">
-						<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-							<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-						</svg>
-					</a>
-					<a href="https://github.com/nganduntita1" target="_blank" class="social-btn github" title="GitHub">
-						<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-							<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-						</svg>
-					</a>
-				</div>
-			</div>
+            <!-- Metrics / Stats Section -->
+            <section class="metrics-section">
+                <div class="metrics-container">
+                    <div class="metric-item gs-reveal">
+                        <h2 class="metric-number">4+ <span>YRS</span></h2>
+                        <p class="metric-text">Full Stack Delivery</p>
+                    </div>
+                    <div class="metric-item gs-reveal">
+                        <h2 class="metric-number">1k+ <span>BUGS</span></h2>
+                        <p class="metric-text">Critical Fixes Shipped</p>
+                    </div>
+                    <div class="metric-item gs-reveal">
+                        <h2 class="metric-number">AI <span>+</span> Web</h2>
+                        <p class="metric-text">Intelligent Integrations</p>
+                    </div>
+                </div>
+            </section>
 
-			<div class="right-column">
-				<div id="preview-shadow">
-					<div id="preview">
-						<div id="corner-tl" class="corner"></div>
-						<div id="corner-tr" class="corner"></div>
-						
-						<p>I’m a Full Stack Engineer focused on AI integration and WordPress development. Based in Johannesburg and open to remote opportunities, I build scalable full stack apps and user-focused products from concept to deployment.</p>
-						<p></p>
-						<div id="corner-br" class="corner"></div>
-						<div id="corner-bl" class="corner"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>		
-</section>
+            <!-- About Section -->
+            <section class="about" id="about">
+                <div class="container">
+                    <div class="about-grid">
+                        <div class="about-image gs-reveal-left">
+                            <div class="image-wrapper">
+                                <img src="./images/Profile.png" alt="Ntita profile photo">
+                                <div class="image-overlay"></div>
+                            </div>
+                        </div>
+                        <div class="about-content gs-reveal-right">
+                            <h2 class="section-title">Beyond the Code</h2>
+                            <p class="about-text">
+                                Results-driven Software Engineer with 4+ years of experience delivering scalable full
+                                stack applications, WordPress solutions, and AI-powered products. Open to remote
+                                opportunities.
+                            </p>
+                            <p class="about-text">
+                                Skilled in React, Laravel, Django, TypeScript, and cloud-ready architectures. I love
+                                building startup apps and turning early ideas into real products.
+                            </p>
 
-<section class="s2">
-	<div class="main-container">
-		<div class="metrics">
-			<div class="metric">
-				<h3>4+ years</h3>
-				<p>Full stack delivery experience</p>
-			</div>
-			<div class="metric">
-				<h3>1000+ bugs</h3>
-				<p>Critical fixes shipped in production</p>
-			</div>
-			<div class="metric">
-				<h3>AI + Web</h3>
-				<p>Automation and intelligent features</p>
-			</div>
-		</div>
-	</div>
-</section>
+                            <div class="skills-wrapper">
+                                <h3 class="skills-title">Core Technologies</h3>
+                                <div class="skills-tags">
+                                    <span>React.js</span>
+                                    <span>Next.js</span>
+                                    <span>Vue.js</span>
+                                    <span>Laravel</span>
+                                    <span>Django</span>
+                                    <span>TypeScript</span>
+                                    <span>AI Integration</span>
+                                    <span>WordPress</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
+            <!-- 3D Story Section -->
+            <section class="story-section" id="story">
+                <div class="story-canvas-container">
+                    <canvas id="story-canvas"></canvas>
+                </div>
+                <div class="story-content">
+                    <div class="panel" id="s1">
+                        <div class="panel-content">
+                            <h2>I didn’t discover tech. I grew up inside it.</h2>
+                            <p>As a kid, I was the one people called when something stopped working. Phones, computers, random glitches. I did not just fix them, I needed to understand them. That curiosity turned into obsession.</p>
+                        </div>
+                    </div>
+                    <div class="panel" id="s2">
+                        <div class="panel-content">
+                            <h2>In 2018, I wrote my first real code.</h2>
+                            <p>I started experimenting with WordPress and Python. Around the same time, my older brother asked me to build a website for his business. I had no idea what I was doing, but I figured it out. When it finally worked, something clicked.</p>
+                        </div>
+                    </div>
+                    <div class="panel" id="s3">
+                        <div class="panel-content">
+                            <h2>That was the turning point.</h2>
+                            <p>It stopped being a habit and became a path. I went all in: Udemy, Codecademy, late nights, trial and error. Codecademy stood out because writing code and seeing it come alive instantly made everything real. I was not just learning. I was building.</p>
+                        </div>
+                    </div>
+                    <div class="panel" id="s4">
+                        <div class="panel-content">
+                            <h2>By 2020, I was freelancing.</h2>
+                            <p>No network. No shortcuts. Just cold calls, persistence, and small wins that slowly built confidence. In 2021, I stepped into global platforms like Upwork, competing, learning, and adapting fast.</p>
+                        </div>
+                    </div>
+                    <div class="panel" id="s5">
+                        <div class="panel-content">
+                            <h2>In 2023, I landed my first full-stack role at Sinappsus.</h2>
+                            <p>I worked on Witchiam from the ground up, seeing a product go from idea to launch. That experience changed how I think. It was no longer just about code. It was about systems, users, and impact.</p>
+                        </div>
+                    </div>
+                    <div class="panel" id="s6">
+                        <div class="panel-content">
+                            <h2>Then came real product pressure.</h2>
+                            <p>After launch, I joined a team building CirculateIt, a platform connecting clients with talent. We shipped something real. It did not take off, but that taught me as much as success would have.</p>
+                        </div>
+                    </div>
+                    <div class="panel" id="s7">
+                        <div class="panel-content">
+                            <h2>So I made a decision: instead of waiting, I build.</h2>
+                            <p>After working as an independent contractor at TechGenius for over a year, I saw how inconsistent contract cycles can be. Today I keep building products, experimenting with ideas, and pushing my limits alongside my AI teammate.</p>
+                            <div class="story-projects">
+                                <span>marchcd.tech</span> • <span>meetkora.tech</span> • <span>English Teach</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel" id="s8">
+                        <div class="panel-content">
+                            <h2>I still work with real clients, and I am just getting started.</h2>
+                            <p>I build high-converting work like subsaharaliving.com while creating my own tools and platforms. There is something bigger I am chasing. Something that matters. And I am ready for it.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-<section class="s2">
-<div class="main-container">
+            <!-- Experience Section -->
+            <section class="experience" id="experience">
+                <div class="container">
+                    <h2 class="section-title text-center gs-reveal">Professional Timeline</h2>
+                    <div class="timeline">
+                        <div class="timeline-item gs-reveal">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">Mar 2024 – Aug 2025</div>
+                            <div class="timeline-content">
+                                <h3>Software Developer</h3>
+                                <h4>Tech Genius | Cape Town</h4>
+                                <p>Built and maintained full stack apps with React, Laravel, and modern databases.
+                                    Integrated AI-powered tools and improved performance through clean architecture.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item gs-reveal">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">Aug 2023 – Aug 2024</div>
+                            <div class="timeline-content">
+                                <h3>Software Developer</h3>
+                                <h4>Teljoy | Johannesburg</h4>
+                                <p>Resolved 20+ critical bugs, delivered new features, and partnered with
+                                    cross-functional teams to improve platform stability and retention.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item gs-reveal">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">Feb 2022 – Apr 2023</div>
+                            <div class="timeline-content">
+                                <h3>Full Stack Developer</h3>
+                                <h4>Sinappsus | Johannesburg</h4>
+                                <p>Delivered responsive web apps with JavaScript, PHP, built APIs, and supported
+                                    deployments, debugging, and performance tuning.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-	<div class="about-wrapper">
-		<div class="about-me">
-			<h1 class="more">More about me</h1>
+            <!-- Projects Section -->
+            <section class="projects" id="projects">
+                <div class="container">
+                    <h2 class="section-title text-center gs-reveal">Featured Works</h2>
+                    <p class="section-subtitle text-center gs-reveal">Showcasing recent product builds and AI
+                        integrations.</p>
 
-			<h5>Results-driven Software Engineer with 4+ years of experience delivering scalable full stack applications, WordPress solutions, and AI-powered products. I’m based in Johannesburg, South Africa, sometimes in Cape Town, and open to remote opportunities.</h5>
+                    <div class="projects-grid">
+                        <!-- Project 1 -->
+                        <div class="project-card gs-reveal" data-title="MarcheCD — E-commerce Marketplace"
+                            data-link="https://www.marchecd.tech/landing"
+                            data-description="Online marketplace built to solve the gap in modern e-commerce for Congo."
+                            data-images="./images/cd.png,./images/cd1.png,./images/cd2.png">
+                            <div class="project-image">
+                                <img src="./images/cd.png" alt="MarcheCD project" loading="lazy">
+                                <div class="project-overlay">
+                                    <span class="view-btn">View Details</span>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>MarcheCD Marketplace</h3>
+                                <p>E-commerce / Scalable Platform</p>
+                            </div>
+                        </div>
 
-			<p>Skilled in React, Laravel, Django, TypeScript, and cloud-ready architectures, with a proven record of improving performance, fixing critical bugs, and building user-focused platforms from concept to deployment.</p>
-			<p>I love building startup apps and turning early ideas into real products. I have a few startup concepts I’m preparing to launch, and I’m hopeful to meet the right co-founders to help launch them properly.</p>
-		
+                        <!-- Project 2 -->
+                        <div class="project-card gs-reveal" data-title="Kora — AI Home & Family Assistant"
+                            data-link="https://meetkora.online"
+                            data-description="AI assistant that helps families manage tasks, schedules, and reminders."
+                            data-images="./images/kora.png,./images/kora1.png,./images/kora2.png">
+                            <div class="project-image">
+                                <img src="./images/kora.png" alt="Kora AI assistant" loading="lazy">
+                                <div class="project-overlay">
+                                    <span class="view-btn">View Details</span>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Kora AI Assistant</h3>
+                                <p>AI Integration / Automation</p>
+                            </div>
+                        </div>
 
-			<hr>
+                        <!-- Project 3 -->
+                        <div class="project-card gs-reveal" data-title="English Teacher App — AI Learning Platform"
+                            data-link="https://english-teacher-app.vercel.app"
+                            data-description="Adaptive English learning platform with personalized AI-driven exercises."
+                            data-images="./images/english.png,./images/english1.png">
+                            <div class="project-image">
+                                <img src="./images/english.png" alt="English Teacher App" loading="lazy">
+                                <div class="project-overlay">
+                                    <span class="view-btn">View Details</span>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>English Teacher AI</h3>
+                                <p>EdTech / Next.js / OpenAI</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-			<h4>TECHNICAL SKILLS</h4>
+            <!-- Contact Section -->
+            <section class="contact" id="contact">
+                <div class="space-particles space-particles--contact" id="particles-contact" aria-hidden="true"></div>
+                <div class="contact-glow"></div>
+                <div class="container">
+                    <div class="contact-wrapper gs-reveal">
+                        <div class="contact-info">
+                            <h2 class="section-title">Let's build<br>something great.</h2>
+                            <p class="contact-desc">Available for full stack, AI integration, and core WordPress work.
+                            </p>
 
-			<p>Frontend, backend, CMS, and AI integration experience across modern stacks.</p>
-            <div class="border"></div>
-			<div id="skills">
-				<ul>
-					<li>React.js</li>
-					<li>Vue.js</li>
-					<li>Next.js</li>
-					<li>HTML5/CSS3</li>
-					<li>AI Tools</li>
-					<li>AI IDE Workflows</li>
-				</ul>
+                            <div class="social-links">
+                                <a href="https://github.com/nganduntita1" target="_blank" class="social-icon"><i
+                                        class="fab fa-github"></i></a>
+                                <a href="https://www.linkedin.com/in/kapinga-ntita/" target="_blank"
+                                    class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://www.instagram.com/ntita11/" target="_blank" class="social-icon"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
 
-				<ul>
-					<li>Laravel</li>
-					<li>Django</li>
-					<li>REST APIs</li>
-					<li>WordPress</li>
-					<li>AI Automations</li>
-					<li>Prompt Engineering</li>
-				</ul>
+                            <div class="contact-direct">
+                                <p>Prefer a call?</p>
+                                <a href="https://calendly.com/nganduntita" target="_blank" class="calendly-link">Book a
+                                    20-min intro <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
 
-			</div>
+                        <div class="contact-form-wrapper">
+                            <form id="frmContact" action="https://formspree.io/f/xzbokyja" method="post"
+                                class="premium-form">
+                                <div class="form-group">
+                                    <input type="text" name="name" id="name" required placeholder=" ">
+                                    <label for="name">Your Name</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" id="email" required placeholder=" ">
+                                    <label for="email">Your Email</label>
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="message" id="message" rows="4" required placeholder=" "></textarea>
+                                    <label for="message">Message</label>
+                                </div>
+                                <button type="submit" class="submit-btn">
+                                    <span>Send Message</span>
+                                    <div class="btn-bg"></div>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-			<h4>Professional Experience</h4>
-			<div class="experience-list">
-				<div class="experience-item">
-					<strong>Software Developer — Tech Genius | Cape Town</strong>
-					<span class="small">March 2024 – August 2025</span>
-					<p>Built and maintained full stack apps with React, Laravel, and modern databases. Integrated AI-powered tools, collaborated with clients, and improved performance through clean architecture and optimization.</p>
-				</div>
-				<div class="experience-item">
-					<strong>Software Developer — Teljoy (Rent-to-Own Platform) | Johannesburg</strong>
-					<span class="small">August 2023 – August 2024</span>
-					<p>Resolved 20+ critical bugs, delivered new features, and partnered with cross-functional teams to improve stability, retention, and code quality.</p>
-				</div>
-				<div class="experience-item">
-					<strong>Full Stack Developer — Sinappsus | Johannesburg</strong>
-					<span class="small">February 2022 – April 2023</span>
-					<p>Delivered responsive web apps with JavaScript, PHP, and database-driven systems, built APIs, and supported deployments, debugging, and performance tuning.</p>
-				</div>
-			</div>
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-bottom">
+                        <p>&copy; 2026 Ngandu Kapinga Ntita. All rights reserved.</p>
+                        <a href="#" class="back-to-top">Back to top <i class="fas fa-arrow-up"></i></a>
+                    </div>
+                </div>
+            </footer>
 
-		</div>
+        </div>
+    </div>
 
-		<!-- <div class="social-links">
-		   <img id="social_img" src="https://files.fm/thumb_show.php?i=7g68g9eud">
-		   
-		   <h3 >  <a class="text" target="_blank" href="https://github.com/nganduntita1">Find me on Github</a></h3>
+    <!-- Modals (Dynamically populated by JS) -->
+    <div class="project-modal" id="projectModal" aria-hidden="true">
+        <div class="project-modal__backdrop" data-close="true"></div>
+        <div class="project-modal__content">
+            <button class="project-modal__close" data-close="true">&times;</button>
+            <div class="modal-body">
+                <h3 id="projectModalTitle">Project Title</h3>
+                <p id="projectModalDesc">Project Description</p>
+                <div class="project-modal__gallery" id="projectModalGallery"></div>
+                <div class="modal-action">
+                    <a id="projectModalLink" href="#" target="_blank" class="btn btn-primary">Live Preview <i
+                            class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-		   
-		   <div class="insta">  
-			<div class="innerbox"> 
-				
-			</div>  
-		  </div>  
-		</div> -->
-	</div> 
-</div>		
-</section>
+    <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+        <div class="image-lightbox__backdrop" data-close="true"></div>
+        <img id="imageLightboxImg" src="" alt="Zoomed view">
+        <button class="image-lightbox__close" data-close="true">&times;</button>
+    </div>
 
-<section class="s1">
-	<div class="main-container">
-		<div class="section-header">
-			<h3>Services</h3>
-			<p>Focused offerings to help you ship faster and grow with confidence.</p>
-		</div>
-		<div class="services-grid">
-			<div class="service-card">
-				<h4>Full Stack Builds</h4>
-				<p>Design, build, and deploy modern web apps with clean architecture and scalable features.</p>
-			</div>
-			<div class="service-card">
-				<h4>AI Integration</h4>
-				<p>Automations, intelligent assistants, and AI-powered workflows that boost productivity.</p>
-			</div>
-			<div class="service-card">
-				<h4>WordPress & CMS</h4>
-				<p>Custom themes, plugins, and performance upgrades to keep content fast and secure.</p>
-			</div>
-		</div>
-		<div class="section-cta">
-			<a class="btn primary" href="#frmContact">Request a quote</a>
-		</div>
-	</div>
-</section>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 
-<section class="s1">
-<div class="main-container">
-	<div class="projects-header">
-		<h3>Featured Projects</h3>
-		<p>Three highlighted builds. More projects on request.</p>
-	</div>
-
-	<div class="projects-grid">
-		<button class="project-card" type="button" data-title="MarcheCD — E-commerce Marketplace" data-link="https://www.marchecd.tech/landing" data-description="Online marketplace built to solve the gap in modern e-commerce for Congo, with scalable product and ordering flows." data-images="./images/cd.png,./images/cd1.png,./images/cd2.png,./images/cd3.png,./images/cd4.png,./images/cd5.png">
-			<span class="project-card__media">
-				<img src="./images/cd.png" width="520" height="320" loading="lazy" decoding="async" alt="MarcheCD project">
-			</span>
-			<span class="project-card__body">
-				<span class="project-card__title">MarcheCD — E-commerce Marketplace</span>
-				<span class="project-card__desc">Scalable marketplace with strong focus on product discovery and ordering flows.</span>
-				<span class="project-card__cta">View project</span>
-			</span>
-		</button>
-
-		<button class="project-card" type="button" data-title="Kora — AI Home & Family Assistant" data-link="https://meetkora.online" data-description="AI assistant that helps families manage tasks, schedules, and reminders with productivity-focused automation." data-images="./images/kora.png,./images/kora1.png,./images/kora2.png">
-			<span class="project-card__media">
-				<img src="./images/kora.png" width="520" height="320" loading="lazy" decoding="async" alt="Kora AI assistant project">
-			</span>
-			<span class="project-card__body">
-				<span class="project-card__title">Kora — AI Home & Family Assistant</span>
-				<span class="project-card__desc">Intelligent reminders and automation to keep households organized.</span>
-				<span class="project-card__cta">View project</span>
-			</span>
-		</button>
-
-		<button class="project-card" type="button" data-title="English Teacher App — AI Learning Platform" data-link="https://english-teacher-app.vercel.app" data-description="Adaptive English learning platform for French-speaking users with personalized AI-driven exercises." data-images="./images/english.png,./images/english1.png">
-			<span class="project-card__media">
-				<img src="./images/english.png" width="520" height="320" loading="lazy" decoding="async" alt="English Teacher App project">
-			</span>
-			<span class="project-card__body">
-				<span class="project-card__title">English Teacher App — AI Learning Platform</span>
-				<span class="project-card__desc">Personalized practice with progress tracking and AI-generated lessons.</span>
-				<span class="project-card__cta">View project</span>
-			</span>
-		</button>
-	</div>
-</div>		
-</section>
-
-<section class="s2">
-	<div class="main-container">
-		<div class="section-header">
-			<h3>Case Study Snapshot</h3>
-			<p>Focused delivery with measurable outcomes.</p>
-		</div>
-		<div class="case-study">
-			<div class="case-study__content">
-				<h4>Teljoy Platform Stabilization</h4>
-				<p>Resolved 20+ critical bugs and improved reliability, leading to a smoother customer experience and higher retention.</p>
-				<ul class="case-study__metrics">
-					<li><strong>20+ </strong>critical fixes shipped</li>
-					<li><strong>Improved</strong> stability & performance</li>
-					<li><strong>Faster</strong> release cadence</li>
-				</ul>
-			</div>
-			<div class="case-study__cta">
-				<a class="btn secondary" href="#frmContact">Let’s plan your project</a>
-			</div>
-		</div>
-	</div>
-</section>
-
-<div class="project-modal" id="projectModal" aria-hidden="true" role="dialog" aria-label="Project details">
-	<div class="project-modal__backdrop" data-close="true"></div>
-	<div class="project-modal__content" role="document">
-		<button class="project-modal__close" type="button" data-close="true" aria-label="Close">×</button>
-		<h4 class="project-modal__title" id="projectModalTitle"></h4>
-		<p class="project-modal__desc" id="projectModalDesc"></p>
-		<div class="project-modal__gallery" id="projectModalGallery"></div>
-		<a class="project-modal__link" id="projectModalLink" href="#" target="_blank" rel="noopener">Visit project</a>
-	</div>
-</div>
-
-<div class="image-lightbox" id="imageLightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
-	<div class="image-lightbox__backdrop" data-close="true"></div>
-	<img id="imageLightboxImg" src="" alt="Project preview">
-	<button class="image-lightbox__close" type="button" data-close="true" aria-label="Close">×</button>
-</div>
-
-
-
-<section  class="s2">
-<h1 class="contact-me">Say Hi</h1>
-
-  
-<form id="frmContact" action="https://formspree.io/f/xzbokyja" method="post">
-
-<p><label for="name">Name *</label><br>
-<input class="demoInputBox" maxlength="80" name="name" id="name" size="30" type="text" required   /></p>
-
-<p><label for="email">Email *</label><br>
-<input class="demoInputBox" maxlength="80" name="email" id="email" type="email" required   /></p>
-
-<p><label for="msg">Message *</label><br>
-<textarea class="demoInputBox" cols="25" maxlength="1000" id="msg" name="message" rows="6" required  ></textarea></p>
-
-<button class="btnAction" type="submit">Send</button>
-
-<p class="contact-alt">Prefer a call? <a href="https://calendly.com/nganduntita" target="_blank" rel="noopener">Book a 20‑min intro</a></p>
-
-</form>
-</section>
-
-<footer class="site-footer">
-	<div class="main-container footer-grid">
-		<div>
-			<h4>Let’s build something great</h4>
-			<p>Available for full stack, AI integration, and WordPress work.</p>
-		</div>
-		<div>
-			<a href="mailto:nganduntita@gmail.com">nganduntita@gmail.com</a><br>
-			<a href="https://www.linkedin.com/in/kapinga-ntita/" target="_blank" rel="noopener">LinkedIn</a><br>
-			<a href="https://github.com/nganduntita1" target="_blank" rel="noopener">GitHub</a><br>
-			<a href="UPGRADED_Ntita_1.docx" download>Download CV</a>
-		</div>
-	</div>
-</footer>
-
-<a class="sticky-contact" href="#frmContact">Contact</a>
-<!-- <footer>
-<div class="container1">
-	<i class="fa fa-apple" id="apple"  ></i>
-	<i class="fa fa-twitter" id="twitter"></i>
-	<i class="fa fa-github-square github" id="github"></i>
-	<i class="fa fa-facebook-square" id="facebook"></i>
-  </div>
-</footer> -->
-</div>
-   	
-		
-    
-	<script type="text/javascript" src="script.js" defer></script>
-    <!-- <script type="text/javascript" src="waves.js"></script> -->
-	
-    
+    <script src="story3d.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>

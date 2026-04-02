@@ -1,0 +1,11 @@
+Model Information:
+* title:	Globe
+* source:	https://sketchfab.com/3d-models/globe-b223eb114067448ea95dabdc87098bd5
+* author:	Paulo Rodrigo Simões (https://sketchfab.com/rollingdrone)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Globe" (https://sketchfab.com/3d-models/globe-b223eb114067448ea95dabdc87098bd5) by Paulo Rodrigo Simões (https://sketchfab.com/rollingdrone) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
