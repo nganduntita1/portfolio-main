@@ -337,6 +337,7 @@ p {
   position: relative;
   padding: 0 5%;
   overflow: hidden;
+  z-index: 3;
 }
 
 .hero-model-stage {
@@ -344,10 +345,8 @@ p {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 72% 38%, rgba(100, 255, 218, 0.2), transparent 26%),
-    radial-gradient(circle at 82% 58%, rgba(189, 52, 254, 0.18), transparent 22%),
-    linear-gradient(90deg, rgba(3, 3, 5, 0.95) 0%, rgba(3, 3, 5, 0.62) 42%, rgba(3, 3, 5, 0.18) 100%);
+  /* Only darken the left side where text lives — right stays open for the 3D model */
+  background: linear-gradient(90deg, rgba(3, 3, 5, 0.92) 0%, rgba(3, 3, 5, 0.55) 45%, transparent 70%);
 }
 
 .space-particles {
@@ -358,30 +357,8 @@ p {
   opacity: 0.9;
 }
 
-.hero-model-stage model-viewer {
-  transform: translateX(12%) scale(1.18);
-  transform-origin: center right;
-  filter: saturate(1.05) contrast(1.04);
-}
-
-.hero-model-stage::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(3, 3, 5, 0.08) 0%, rgba(3, 3, 5, 0.28) 100%);
-}
-
 .hero-model-glow {
-  position: absolute;
-  top: 50%;
-  right: 8%;
-  width: min(42vw, 560px);
-  aspect-ratio: 1;
-  transform: translateY(-50%);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(100, 255, 218, 0.22) 0%, rgba(100, 255, 218, 0.08) 38%, rgba(189, 52, 254, 0.04) 56%, transparent 74%);
-  filter: blur(28px);
-  opacity: 0.95;
+  display: none;
 }
 
 .hero-container {
@@ -454,10 +431,7 @@ p {
   }
 
   .hero-model-stage {
-    background:
-      radial-gradient(circle at 50% 28%, rgba(100, 255, 218, 0.18), transparent 24%),
-      radial-gradient(circle at 58% 48%, rgba(189, 52, 254, 0.16), transparent 24%),
-      linear-gradient(180deg, rgba(3, 3, 5, 0.88) 0%, rgba(3, 3, 5, 0.52) 44%, rgba(3, 3, 5, 0.9) 100%);
+    background: linear-gradient(180deg, rgba(3, 3, 5, 0.85) 0%, rgba(3, 3, 5, 0.4) 50%, transparent 100%);
   }
 
   .hero-model-glow {
@@ -467,7 +441,7 @@ p {
     transform: translate(50%, -50%);
   }
 
-  .hero-model-stage model-viewer {
+  .hero-model-stage .hero-model {
     transform: translateY(-10%) scale(1.05);
     transform-origin: center center;
   }
@@ -526,7 +500,8 @@ p {
   padding: 5rem 0;
   border-bottom: 1px solid var(--card-border);
   border-top: 1px solid var(--card-border);
-  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02) 50%, transparent);
+  position: relative;
+  z-index: 3;
 }
 
 .metrics-container {
@@ -570,9 +545,8 @@ p {
 
 .about {
   padding: 10rem 0;
-  background-color: var(--bg-color);
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 .about-grid {
@@ -651,9 +625,8 @@ p {
 
 .experience {
   padding: 5rem 0 10rem;
-  background-color: var(--bg-color);
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 .timeline {
@@ -723,9 +696,8 @@ p {
 
 .projects {
   padding: 5rem 0 10rem;
-  background-color: #030305;
   position: relative;
-  z-index: 1;
+  z-index: 3;
   overflow: hidden;
   --projects-parallax-x: 0px;
   --projects-parallax-y: 0px;
@@ -899,6 +871,7 @@ p {
   padding: 5rem 0 10rem;
   position: relative;
   overflow: hidden;
+  z-index: 3;
 }
 
 .contact::before {
@@ -908,18 +881,12 @@ p {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 28% 62%, rgba(100, 255, 218, 0.2), transparent 26%),
-    radial-gradient(circle at 18% 42%, rgba(189, 52, 254, 0.18), transparent 22%),
-    linear-gradient(90deg, rgba(3, 3, 5, 0.18) 0%, rgba(3, 3, 5, 0.62) 58%, rgba(3, 3, 5, 0.95) 100%);
+    radial-gradient(circle at 28% 62%, rgba(100, 255, 218, 0.12), transparent 26%),
+    radial-gradient(circle at 18% 42%, rgba(189, 52, 254, 0.1), transparent 22%);
 }
 
 .contact::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(3, 3, 5, 0.08) 0%, rgba(3, 3, 5, 0.28) 100%);
+  display: none;
 }
 
 .contact-wrapper {
@@ -1089,6 +1056,8 @@ p {
 .footer {
   padding: 2rem 0;
   border-top: 1px solid var(--card-border);
+  position: relative;
+  z-index: 3;
 }
 
 .footer-bottom {
@@ -1425,6 +1394,8 @@ p {
 
   .timeline::before {
     left: 2rem;
+    top: 0;
+    height: 100%;
   }
 
   .timeline-dot {
@@ -1622,4 +1593,55 @@ p {
 
 .story-projects span {
   color: #fff;
+}
+
+
+/* =========================================================================
+   RIBBON 3D SCROLL CANVAS
+   ========================================================================= */
+
+#ribbon-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.5s ease;
+}
+
+#ribbon-canvas.hidden {
+  opacity: 0;
+}
+
+/* Overlay that darkens the 3D canvas after the hero */
+#ribbon-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;  /* above canvas, below page sections (z:3+) */
+  background: #030305;
+  opacity: 0;
+}
+
+#smooth-wrapper,
+#smooth-content {
+  background: transparent;
+}
+
+/* ── Unified background for all 3D-model sections ── */
+.hero,
+.metrics-section,
+.about,
+.experience,
+.projects,
+.contact,
+.footer {
+  background-color: transparent;
+}
+
+/* Ensure the page bg is always the dark color */
+html, body {
+  background-color: #030305;
 }

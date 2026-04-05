@@ -163,38 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Hero globe: dynamic camera orbit + pointer-reactive tilt for a richer feel
-    const heroModelViewer = document.getElementById('hero-model-viewer');
-    if (heroModelViewer) {
-        let pointerX = 0;
-        let pointerY = 0;
-        let smoothX = 0;
-        let smoothY = 0;
-        let orbitTime = 0;
-
-        const updatePointer = (event) => {
-            const nx = (event.clientX / window.innerWidth) * 2 - 1;
-            const ny = (event.clientY / window.innerHeight) * 2 - 1;
-            pointerX = Math.max(-1, Math.min(1, nx));
-            pointerY = Math.max(-1, Math.min(1, ny));
-        };
-
-        window.addEventListener('mousemove', updatePointer);
-
-        gsap.ticker.add(() => {
-            orbitTime += 0.0035;
-            smoothX += (pointerX - smoothX) * 0.04;
-            smoothY += (pointerY - smoothY) * 0.04;
-
-            const azimuth = 36 + Math.sin(orbitTime * 2.4) * 10 + smoothX * 16;
-            const polar = 74 + Math.cos(orbitTime * 1.7) * 4 + smoothY * 7;
-            const radius = 103 + Math.sin(orbitTime * 2.8) * 5;
-            const speed = 12 + Math.sin(orbitTime * 2.1) * 4;
-
-            heroModelViewer.setAttribute('camera-orbit', `${azimuth.toFixed(2)}deg ${polar.toFixed(2)}deg ${radius.toFixed(2)}%`);
-            heroModelViewer.setAttribute('rotation-per-second', `${speed.toFixed(2)}deg`);
-        });
-    }
+    // Hero globe interaction removed — handled by ribbon3d.js
 
     // Projects: layered section parallax + interactive card depth
     const projectsSection = document.querySelector('.projects');
@@ -496,62 +465,5 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             lenis.scrollTo(0, { duration: 1.5, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
         });
-    }
-
-    /* =========================================================================
-       PARTICLES.JS CONFIGURATION
-       ========================================================================= */
-    const particlesConfig = {
-        "particles": {
-            "number": {
-                "value": 40,
-                "density": { "enable": true, "value_area": 800 }
-            },
-            "color": { "value": ["#64ffda", "#bd34fe", "#ffffff"] },
-            "shape": { "type": "circle" },
-            "opacity": {
-                "value": 0.5,
-                "random": true,
-                "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false }
-            },
-            "size": {
-                "value": 3,
-                "random": true,
-                "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false }
-            },
-            "line_linked": {
-                "enable": true,
-                "distance": 150,
-                "color": "#ffffff",
-                "opacity": 0.2,
-                "width": 1
-            },
-            "move": {
-                "enable": true,
-                "speed": 1.5,
-                "direction": "none",
-                "random": true,
-                "straight": false,
-                "out_mode": "out",
-                "bounce": false,
-            }
-        },
-        "interactivity": {
-            "detect_on": "canvas",
-            "events": {
-                "onhover": { "enable": true, "mode": "grab" },
-                "onclick": { "enable": false },
-                "resize": true
-            },
-            "modes": {
-                "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } }
-            }
-        },
-        "retina_detect": true
-    };
-
-    if (typeof particlesJS !== 'undefined') {
-        particlesJS('particles-hero', particlesConfig);
-        particlesJS('particles-contact', particlesConfig);
     }
 });
