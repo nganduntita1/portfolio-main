@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const wave = Math.sin(time * 2 + origX * 1.5 + origY * 1.5) * state.noiseStrength;
             
             // Explosive turbulent deformation
-            const explode = state.particleExplode * rand[i] * 3.0;
+            const explode = state.particleExplode * rand[i] * 5.0;
 
             const displacement = wave + explode;
 
@@ -236,101 +236,131 @@ document.addEventListener("DOMContentLoaded", () => {
            .to(state, { noiseStrength: 0.4, duration: 1 }, 0)
            .to(camera.position, { z: 8, duration: 1 }, 0); 
 
-        // Professional (S5) - High energy, controlled power (no visual drop-off)
+        // Professional (S5) - Zoom in close, globe tilts, particles ignite teal, ring of light
         const tl5 = gsap.timeline({ scrollTrigger: { trigger: "#s5", start: "top center", end: "bottom center", scrub: 1 } });
         tl5.to(state, {
-            noiseStrength: 0.24,
-            particleExplode: 0,
-            wireOpacity: 0.62,
-            coreOpacity: 0.96,
-            starSpeed: 0.003,
-            starOpacity: 0.8,
-            starPulse: 0.28,
-            globeRotationSpeed: 0.006,
-            duration: 1
+                noiseStrength: 0.32,
+                particleExplode: 0,
+                wireOpacity: 0.75,
+                coreOpacity: 0.97,
+                starSpeed: 0.004,
+                starOpacity: 0.85,
+                starPulse: 0.32,
+                globeRotationSpeed: 0.009,
+                duration: 1
             })
-           .to(pMat, { color: 0x64ffda, size: 0.045, opacity: 0.95, duration: 1 }, 0)
-           .to(camera.position, { z: 8.3, duration: 1 }, 0)
-           .to(light1, { intensity: 5.4, duration: 1 }, 0)
-           .to(light2, { intensity: 5.4, duration: 1 }, 0);
+           .to(pMat, { color: 0x64ffda, size: 0.055, opacity: 1.0, duration: 1 }, 0)
+           .to(camera.position, { z: 6.5, duration: 1 }, 0)
+           .to(globeGroup.rotation, { z: Math.PI * 0.25, duration: 1 }, 0)
+           .to(globeGroup.scale, { x: 1.25, y: 1.25, z: 1.25, duration: 1 }, 0)
+           .to(light1, { intensity: 7, duration: 1 }, 0)
+           .to(light2, { intensity: 7, duration: 1 }, 0);
 
-        // S5 milestone burst (single energetic flare pulse)
+        // S5 milestone burst
         ScrollTrigger.create({
             trigger: "#s5",
             start: "top 55%",
             onEnter: () => {
                 gsap.killTweensOf(state, "flare flarePulse");
                 gsap.fromTo(state, { flare: 0, flarePulse: 0 }, {
-                    flare: 1.45,
-                    flarePulse: 0.95,
-                    duration: 0.85,
-                    ease: "power3.out",
-                    yoyo: true,
-                    repeat: 1
+                    flare: 1.8, flarePulse: 1.1,
+                    duration: 0.85, ease: "power3.out", yoyo: true, repeat: 1
                 });
                 gsap.to(state, { flare: 0.32, flarePulse: 0.24, duration: 1.7, delay: 1.1, ease: "power2.out" });
             },
             onEnterBack: () => {
                 gsap.killTweensOf(state, "flare flarePulse");
                 gsap.fromTo(state, { flare: 0, flarePulse: 0 }, {
-                    flare: 1.25,
-                    flarePulse: 0.7,
-                    duration: 0.75,
-                    ease: "power2.out",
-                    yoyo: true,
-                    repeat: 1
+                    flare: 1.4, flarePulse: 0.8,
+                    duration: 0.75, ease: "power2.out", yoyo: true, repeat: 1
                 });
                 gsap.to(state, { flare: 0.28, flarePulse: 0.2, duration: 1.4, delay: 1.0, ease: "power2.out" });
             }
         });
 
-        // Failure (S6) - elegant particle dispersion breaking logic 
+        // Failure (S6) - Globe cracks apart: particles scatter, core fades, camera pulls back
         const tl6 = gsap.timeline({ scrollTrigger: { trigger: "#s6", start: "top center", end: "bottom center", scrub: 1 } });
-        tl6.to(state, { particleExplode: 0.6, coreOpacity: 0.3, wireOpacity: 0.4, noiseStrength: 0.0, starSpeed: 0.0028, starOpacity: 0.68, starPulse: 0.24, duration: 1 })
-           .to(pMat, { color: 0xbd34fe, size: 0.04, duration: 1 }, 0);
+        tl6.to(state, {
+                particleExplode: 1.2,
+                coreOpacity: 0.15,
+                wireOpacity: 0.18,
+                noiseStrength: 0.6,
+                starSpeed: 0.005,
+                starOpacity: 0.55,
+                starPulse: 0.38,
+                globeRotationSpeed: 0.014,
+                duration: 1
+            })
+           .to(pMat, { color: 0xbd34fe, size: 0.06, opacity: 0.85, duration: 1 }, 0)
+           .to(camera.position, { z: 12, duration: 1 }, 0)
+           .to(globeGroup.scale, { x: 1.6, y: 1.6, z: 1.6, duration: 1 }, 0)
+           .to(globeGroup.rotation, { z: Math.PI * 0.6, duration: 1 }, 0)
+           .to(light1, { intensity: 1.5, duration: 1 }, 0)
+           .to(light2, { intensity: 1.5, duration: 1 }, 0);
 
-        // Builder Mode (S7) - Particles snap back, nodes arise
+        // Builder Mode (S7) - Particles snap back, nodes arise, globe reforms
         const tl7 = gsap.timeline({ scrollTrigger: { trigger: "#s7", start: "top center", end: "bottom center", scrub: 1 } });
-        tl7.to(state, { particleExplode: 0, noiseStrength: 0.15, coreOpacity: 0.9, starSpeed: 0.0025, starOpacity: 0.7, starPulse: 0.2, duration: 1 })
+        tl7.to(state, { particleExplode: 0, noiseStrength: 0.18, coreOpacity: 0.92, starSpeed: 0.003, starOpacity: 0.75, starPulse: 0.22, globeRotationSpeed: 0.007, duration: 1 })
            .to(wireMat.color, { r: 189/255, g: 52/255, b: 254/255, duration: 1 }, 0)
-           .to(nodeGroup.scale, { x: 1, y: 1, z: 1, duration: 1, ease: "back.out(1.5)" }, 0.5);
+           .to(pMat, { color: 0xbd34fe, size: 0.045, opacity: 0.9, duration: 1 }, 0)
+           .to(camera.position, { z: 9, duration: 1 }, 0)
+           .to(globeGroup.scale, { x: 1.1, y: 1.1, z: 1.1, duration: 1 }, 0)
+           .to(globeGroup.rotation, { z: 0, duration: 1 }, 0)
+           .to(nodeGroup.scale, { x: 1, y: 1, z: 1, duration: 1, ease: "back.out(1.5)" }, 0.5)
+           .to(light1, { intensity: 5, duration: 1 }, 0)
+           .to(light2, { intensity: 5, duration: 1 }, 0);
 
-        // Final (S8) - Dimensional Pulse Expanding outward
+        // EXPLOSION (S8) - Globe detonates: massive particle blast, core implodes, shockwave
         const tl8 = gsap.timeline({ scrollTrigger: { trigger: "#s8", start: "top center", end: "bottom center", scrub: 1 } });
-        tl8.to(globeGroup.scale, { x: 0.8, y: 0.8, z: 0.8, duration: 0.3 })
-           .to(globeGroup.scale, { x: 1.4, y: 1.4, z: 1.4, duration: 0.7 }, 0.3)
-               .to(state, { noiseStrength: 0.58, wireOpacity: 0.9, starSpeed: 0.0034, starOpacity: 0.88, starPulse: 0.34, globeRotationSpeed: 0.0075, duration: 0.7 }, 0.3)
-           .to(light1, { intensity: 6, duration: 0.7 }, 0.3)
-           .to(light2, { intensity: 6, duration: 0.7 }, 0.3);
+        tl8
+           // Phase 1 (0→0.3): globe compresses inward — the calm before the storm
+           .to(globeGroup.scale, { x: 0.6, y: 0.6, z: 0.6, duration: 0.3, ease: "power2.in" })
+           .to(state, { noiseStrength: 0.05, coreOpacity: 0.99, wireOpacity: 0.95, duration: 0.3 }, 0)
+           .to(camera.position, { z: 7, duration: 0.3 }, 0)
+           // Phase 2 (0.3→1): DETONATE — particles blast outward, core vanishes, lights surge
+           .to(globeGroup.scale, { x: 3.5, y: 3.5, z: 3.5, duration: 0.7, ease: "expo.out" }, 0.3)
+           .to(state, {
+               particleExplode: 3.5,
+               noiseStrength: 1.2,
+               coreOpacity: 0.0,
+               wireOpacity: 0.0,
+               starSpeed: 0.012,
+               starOpacity: 1.0,
+               starPulse: 0.6,
+               globeRotationSpeed: 0.025,
+               duration: 0.7
+           }, 0.3)
+           .to(pMat, { color: 0xffffff, size: 0.09, opacity: 1.0, duration: 0.4 }, 0.3)
+           .to(camera.position, { z: 14, duration: 0.7, ease: "expo.out" }, 0.3)
+           .to(light1, { intensity: 22, duration: 0.25 }, 0.3)
+           .to(light2, { intensity: 22, duration: 0.25 }, 0.3)
+           .to(light3, { intensity: 12, duration: 0.25 }, 0.3)
+           // Phase 3: lights settle to a warm afterglow
+           .to(light1, { intensity: 8, duration: 0.45 }, 0.55)
+           .to(light2, { intensity: 8, duration: 0.45 }, 0.55)
+           .to(light3, { intensity: 4, duration: 0.45 }, 0.55)
+           .to(pMat, { color: 0xbd34fe, size: 0.07, duration: 0.45 }, 0.55);
 
-            // S8 milestone burst (stronger finale flare)
-            ScrollTrigger.create({
-                trigger: "#s8",
-                start: "top 60%",
-                onEnter: () => {
-                    gsap.killTweensOf(state, "flare flarePulse");
-                    gsap.fromTo(state, { flare: 0.2, flarePulse: 0 }, {
-                        flare: 2.0,
-                        flarePulse: 1.2,
-                        duration: 1.05,
-                        ease: "power4.out",
-                        yoyo: true,
-                        repeat: 1
-                    });
-                    gsap.to(state, { flare: 0.45, flarePulse: 0.32, duration: 2.2, delay: 1.3, ease: "power1.out" });
-                },
-                onEnterBack: () => {
-                    gsap.killTweensOf(state, "flare flarePulse");
-                    gsap.fromTo(state, { flare: 0.2, flarePulse: 0 }, {
-                        flare: 1.6,
-                        flarePulse: 0.95,
-                        duration: 0.9,
-                        ease: "power3.out",
-                        yoyo: true,
-                        repeat: 1
-                    });
-                    gsap.to(state, { flare: 0.36, flarePulse: 0.26, duration: 1.9, delay: 1.2, ease: "power1.out" });
-                }
-            });
+        // S8 instant trigger burst (fires the moment panel enters view)
+        ScrollTrigger.create({
+            trigger: "#s8",
+            start: "top 60%",
+            onEnter: () => {
+                gsap.killTweensOf(state, "flare flarePulse");
+                gsap.fromTo(state, { flare: 0.2, flarePulse: 0 }, {
+                    flare: 3.0, flarePulse: 1.8,
+                    duration: 0.6, ease: "power4.out", yoyo: true, repeat: 1
+                });
+                gsap.to(state, { flare: 0.5, flarePulse: 0.4, duration: 2.5, delay: 0.8, ease: "power1.out" });
+            },
+            onEnterBack: () => {
+                gsap.killTweensOf(state, "flare flarePulse");
+                gsap.fromTo(state, { flare: 0.2, flarePulse: 0 }, {
+                    flare: 2.2, flarePulse: 1.2,
+                    duration: 0.7, ease: "power3.out", yoyo: true, repeat: 1
+                });
+                gsap.to(state, { flare: 0.4, flarePulse: 0.3, duration: 2.0, delay: 0.9, ease: "power1.out" });
+            }
+        });
     }
 });
